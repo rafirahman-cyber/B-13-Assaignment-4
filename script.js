@@ -40,6 +40,26 @@ let jobs = [
             jobs = jobs.filter(j => j.id !== id);
             renderJobs();
         }
+
+        function renderJobs() {
+            const listContainer = document.getElementById('job-list');
+            listContainer.innerHTML = '';
+
+            // Update Header Section (Overall jobs counts)
+            document.getElementById('total-count').innerText = jobs.length;
+            document.getElementById('interview-count').innerText = jobs.filter(j => j.status === 'INTERVIEW').length;
+            document.getElementById('rejected-count').innerText = jobs.filter(j => j.status === 'REJECTED').length;
+
+
+             // Filter jobs for display
+            let filteredJobs = jobs;
+            if (currentFilter !== 'All') {
+                filteredJobs = jobs.filter(j => j.status === currentFilter.toUpperCase());
+            }
+
+
+        }
+            
         
 
 
