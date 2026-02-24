@@ -27,6 +27,19 @@ let jobs = [
 
             renderJobs();
         }
+
+        function updateStatus(id, newStatus) {
+            const jobIndex = jobs.findIndex(j => j.id === id);
+            if (jobIndex > -1) {
+                jobs[jobIndex].status = newStatus;
+                renderJobs();
+            }
+        }
+
+        function deleteJob(id) {
+            jobs = jobs.filter(j => j.id !== id);
+            renderJobs();
+        }
         
 
 
