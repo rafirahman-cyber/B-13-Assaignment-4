@@ -72,6 +72,54 @@ let jobs = [
             }
 
 
+            // Render Job Cards
+            filteredJobs.forEach(job => {
+                let badgeClass = "bg-slate-100 text-slate-600";
+                if(job.status === 'INTERVIEW') badgeClass = "bg-green-100 text-green-700";
+                if(job.status === 'REJECTED') badgeClass = "bg-red-100 text-red-700";
+
+                const cardHTML = `
+                    <div class="bg-white rounded-lg p-6 shadow-sm border border-slate-100 relative group transition hover:shadow-md">
+                        
+                        <button onclick="deleteJob(${job.id})" class="absolute top-6 right-6 text-slate-300 hover:text-red-500 transition">
+                        </button>
+
+                        <h3 class="text-lg font-bold text-slate-900">${job.company}</h3>
+                        <p class="text-slate-500 text-sm mb-3">${job.title}</p>
+
+
+                        <div class="flex items-center text-xs text-slate-400 mb-4 space-x-2">
+                            <span>${job.location}</span>
+                            <span>${job.type}</span>
+                            <span>${job.salary}</span>
+                        </div>
+
+                        <div class="mb-4">
+                            <span class="${badgeClass} text-[10px] font-bold px-2 py-1 rounded tracking-wide uppercase">
+                                ${job.status}
+                            </span>
+                        </div>
+
+                        <p class="text-sm text-slate-600 mb-5 leading-relaxed">
+                            ${job.description}
+                        </p>
+
+                         <div class="flex space-x-3">
+                            <button onclick="updateStatus(${job.id}, 'INTERVIEW')" class="px-4 py-1.5 text-xs font-bold rounded border ${job.status === 'INTERVIEW' ? 'bg-green-500 text-white border-green-500' : 'border-green-400 text-green-500 hover:bg-green-50'} transition">
+                                INTERVIEW
+                            </button>
+                            <button onclick="updateStatus(${job.id}, 'REJECTED')" class="px-4 py-1.5 text-xs font-bold rounded border ${job.status === 'REJECTED' ? 'bg-red-500 text-white border-red-500' : 'border-red-400 text-red-500 hover:bg-red-50'} transition">
+                                REJECTED
+                            </button>
+                        </div>
+                    </div>
+                `;
+                listContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+
+
+
+
 
 
         }
