@@ -57,6 +57,22 @@ let jobs = [
                 filteredJobs = jobs.filter(j => j.status === currentFilter.toUpperCase());
             }
 
+            document.getElementById('showing-count').innerText = `${filteredJobs.length} jobs`;
+
+
+             // Empty Status
+            if (filteredJobs.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="bg-white rounded-lg p-16 flex flex-col items-center justify-center text-center shadow-sm border border-slate-100 mt-4">
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">No jobs available</h3>
+                        <p class="text-sm text-slate-500">Check back soon for new job opportunities</p>
+                    </div>
+                `;
+                return;
+            }
+
+
+
 
         }
             
