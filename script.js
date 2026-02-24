@@ -117,12 +117,9 @@ let jobs = [
                 listContainer.insertAdjacentHTML('beforeend', cardHTML);
             });
 
-
-
-
-
-
         }
+
+        renderJobs();
             
         
 
